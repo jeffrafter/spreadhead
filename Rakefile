@@ -35,6 +35,8 @@ namespace :generator do
     FileUtils.rm_rf("test/rails")
     system "cd test && rails rails"
 
+    FileUtils.rm_rf("test/rails/test/performance")
+
     system "echo \"\" >> test/rails/config/environments/test.rb"
     system "echo \"config.gem 'thoughtbot-shoulda', :lib => 'shoulda'\" >> test/rails/config/environments/test.rb"
     system "echo \"config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl'\" >> test/rails/config/environments/test.rb"
