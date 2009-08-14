@@ -1,0 +1,66 @@
+h1. Spreadhead
+
+<strong>spreadhead</strong> <em>noun</em> two facing pages of a book or other publication.
+
+Rails content mangement for pages that shouldn't be views.
+
+h2. Installation
+
+Spreadhead is a Rails engine. It works with versions of Rails greater than 2.3.
+
+In config/environment.rb:
+
+<pre>
+config.gem "jeffrafter-spreadhead",
+  :lib     => 'spreadhead',
+  :source  => 'http://gems.github.com'
+</pre>
+
+Vendor the gem:
+
+<pre>
+rake gems:install
+rake gems:unpack
+</pre>
+
+Make sure the development database exists and run the generator:
+
+<pre>
+script/generate spreadhead
+</pre>
+
+A number of files will be created and instructions will be printed.
+
+You may already have some of these files. Don't worry. You'll be asked if you want to overwrite them.
+
+Run the migration:
+
+<pre>
+rake db:migrate
+</pre>
+
+h2. Routes
+
+Spreadhead installs default catch-all routes. These are given the lowest priority in your application. If your application is already catching these routes then you may not be able to access your spreadhead pages.
+
+h2. Cucumber Features
+
+As your application evolves, you want to know that your pages still work. Cucumber tests are included.
+
+Run the Cucumber generator (if you haven't already) and the feature generator:
+
+<pre>
+script/generate cucumber
+script/generate spreadhead_features
+</pre>
+
+h2. Authors
+
+Spreadhead is based on the blog post http://neverlet.be/2008/12/17/building-a-content-managment-system by Jeff Rafter
+
+The engine implementation and gem was patterned after the Clearance gem by Thoughtbot.
+
+h2. Suggestions, Bugs, Refactoring?
+
+Fork away and create a "Github Issue":http://github.com/jeffrafter/spreadhead/issues. Please send pull requests.
+

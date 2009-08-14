@@ -1,0 +1,10 @@
+
+*******************************************************************************
+
+Ok, enough fancy automatic stuff. Time for some old school monkey copy-pasting.
+
+If you want to define an extension point in a view simply add:
+
+  <%= page Page.find_by_url("PAGE_NAME") %>
+  
+*******************************************************************************

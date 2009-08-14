@@ -1,0 +1,32 @@
+<div class="errors">
+  <%= form.error_messages %>
+</div>    
+
+<div class="text">
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+</div>
+<div class="text">
+  <%= form.label :description %>
+  <%= form.text_field :description %>
+</div>
+<div class="text">
+  <%= form.label :keywords %>
+  <%= form.text_field :keywords %>
+</div>
+<div class="text">
+  <%= form.label :category %>
+  <%= form.text_field :category %>
+</div>
+<div class="textarea">
+  <%= form.label :text %>
+  <%= form.text_area :text %>
+</div>
+<div class="checkbox">
+  <%= form.label :published %>
+  <%= form.check_box :published %>
+</div>
+<div class="select">
+  <%= form.label :format %>
+  <%= form.select :format, [['Plain','plain'], ['Markdown', 'markdown'], ['Textile', 'textile']] %>
+</div>
