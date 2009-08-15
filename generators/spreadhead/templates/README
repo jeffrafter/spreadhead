@@ -3,17 +3,13 @@
 
 Ok, enough fancy automatic stuff. Time for some old school monkey copy-pasting.
 
-If you want to define an extension point in a view simply add:
-
-  <%= spreadhead "PAGE_URL" %>
-  
-or
-  
-  <%= spreadhead @page %>
-
 By default, Spreadhead does not restrict access to page creation, updating and
 deleting. To implement this you will need to modify
 
   config/initializers/spreadhead.rb
   
+If you want to define an extension point in a view simply add:
+
+  <%= spreadhead "PAGE_URL" %> or <%= spreadhead @page %>
+
 *******************************************************************************
