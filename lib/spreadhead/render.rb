@@ -7,25 +7,27 @@ module Spreadhead
     def self.included(controller) # :nodoc:
       controller.send(:include, InstanceMethods)
       controller.class_eval do
-        helper_method :page
-        hide_action   :page
+        helper_method :spreadhead
+        hide_action   :spreadhead
       end
     end
 
     module InstanceMethods
-      # Show the contents of the specified page to be used when rendering.
+      # Show the contents of the specified page to be used when rendering. The 
+      # page parameter can be either a string (the page url) or a Page object.
       #
       # @return The page text as a string
-      def page(object)
-        return '' unless object
+      def spreadhead(page)
+        return '' unless page
+        page = ::Page.find_by_url!(page) if page.is_a? String
 
-        case object.format
+        case page.format
           when 'markdown'
-            markdown(object.text)
+            markdown(page.text)
           when 'textile'
-            RedCloth.new(object.text).to_html
+            RedCloth.new(page.text).to_html
           else
-            object.text
+            page.text
         end        
       end
     end  

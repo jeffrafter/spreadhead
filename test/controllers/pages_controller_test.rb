@@ -73,10 +73,10 @@ class PagesControllerTest < ActionController::TestCase
     should_not_set_the_flash
 
     should "Destroy the page" do
+      count = Page.count
       page = Factory(:page)
-      assert_difference 'Page.count' do
-        delete :destroy, :id => page.url
-      end          
+      delete :destroy, :id => page.url
+      assert_equal Page.count, count
     end
 
   end

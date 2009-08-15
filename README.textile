@@ -56,7 +56,7 @@ script/generate spreadhead_features
 
 h2. Authors
 
-Spreadhead is based on the blog post http://neverlet.be/2008/12/17/building-a-content-managment-system by Jeff Rafter
+Spreadhead is based on the blog post "http://neverlet.be/2008/12/17/building-a-content-managment-system":http://neverlet.be/2008/12/17/building-a-content-managment-system by Jeff Rafter
 
 The engine implementation and gem was patterned after the Clearance gem by Thoughtbot.
 
@@ -64,3 +64,14 @@ h2. Suggestions, Bugs, Refactoring?
 
 Fork away and create a "Github Issue":http://github.com/jeffrafter/spreadhead/issues. Please send pull requests.
 
+When you do: 
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+h2. Documentation
+
+Documentation is available at "http://rdoc.info/jeffrafter/spreadhead":http://rdoc.info/jeffrafter/spreadhead

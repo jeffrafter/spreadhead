@@ -47,7 +47,7 @@ module Spreadhead
       # :published should have its own scope
       def self.included(model)
         model.class_eval do
-           named_scope :published, :conditions => ['published = 1']
+          named_scope :published, :conditions => ['published = ?', true]
         end
       end
     end

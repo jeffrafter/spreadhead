@@ -1,5 +1,7 @@
-*.DS_Store
-*.swp
-.rake_tasks
+*.sw?
+.DS_Store
+coverage
+rdoc
+pkg
 test/rails
-*.gem
+.gem

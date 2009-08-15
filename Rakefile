@@ -1,33 +1,33 @@
-# encoding: utf-8
-
+require 'rubygems'
 require 'rake'
-require 'rake/testtask'
-require 'cucumber/rake/task'
 
-namespace :test do
-  Rake::TestTask.new(:basic => ["generator:cleanup",
-                                "generator:spreadhead",
-                                "generator:spreadhead_features"]) do |task|
-    task.libs << "lib"
-    task.libs << "test"
-    task.pattern = "test/**/*_test.rb"
-    task.verbose = false
-  end
-  
-=begin
-  Cucumber::Rake::Task.new(:features) do |t|
-    t.cucumber_opts   = "--format progress"
-    t.feature_pattern = "test/rails_root/features/*.feature"
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "spreadhead"
+    gem.summary = %Q{Rails content mangement for pages that shouldn't be views.}
+    gem.description = %Q{Rails content mangement for pages that shouldn't be views.}
+    gem.email = "jeff@socialrange.org"
+    gem.homepage = "http://github.com/jeffrafter/spreadhead"
+    gem.authors = ["Jeff Rafter"]
+    gem.add_dependency "BlueCloth"
+    gem.add_dependency "RedCloth"
+    gem.add_dependency "rsl-stringex"
+    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 
-  Cucumber::Rake::Task.new(:features_for_views) do |t|
-    t.cucumber_opts   = "--format progress"
-    t.feature_pattern = "test/rails_root/features/*.feature"
-  end
-=end  
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 
-generators = %w(spreadhead spreadhead_features)
+require 'rake/testtask'
+Rake::TestTask.new(:test => ["generator:cleanup", "generator:spreadhead"]) do |task|
+  task.libs << "lib" << "test"
+  task.pattern = "test/**/*_test.rb"
+  task.verbose = true
+end  
+
+generators = %w(spreadhead)
 
 namespace :generator do
   desc "Cleans up the test app before running the generator"
@@ -35,6 +35,7 @@ namespace :generator do
     FileUtils.rm_rf("test/rails")
     system "cd test && rails rails"
 
+    # I don't like testing performance!
     FileUtils.rm_rf("test/rails/test/performance")
 
     system "echo \"\" >> test/rails/config/environments/test.rb"
@@ -50,32 +51,24 @@ namespace :generator do
   task :spreadhead do
     system "cd test/rails && ./script/generate spreadhead && rake db:migrate db:test:prepare"
   end
-
-  desc "Run the spreadhead features generator"
-  task :spreadhead_features do
-    system "cd test/rails && ./script/generate spreadhead_features"
-  end
 end
 
-desc "Run the test suite"
-task :default => ['test:basic', 'test:features',
-                  'test:views', 'test:features_for_views']
+task :default => :test
 
-gem_spec = Gem::Specification.new do |gem_spec|
-  gem_spec.name        = "spreadhead"
-  gem_spec.version     = "0.1.0"
-  gem_spec.summary     = "Rails content mangement for pages that shouldn't be views."
-  gem_spec.email       = "jeff@socialrange.org"
-  gem_spec.homepage    = "http://github.com/jeffrafter/spreadhead"
-  gem_spec.description = "Rails content mangement for pages that shouldn't be views."
-  gem_spec.authors     = ["Jeff Rafter"]
-  gem_spec.files       = FileList["[A-Z]*", "{app,config,generators,lib,shoulda_macros,rails}/**/*"]
-end
-
-desc "Generate a gemspec file"
-task :gemspec do
-  File.open("#{gem_spec.name}.gemspec", 'w') do |f|
-    f.write gem_spec.to_yaml
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  if File.exist?('VERSION.yml')
+    config = YAML.load(File.read('VERSION.yml'))
+    version = "#{config[:major]}.#{config[:minor]}.#{config[:patch]}"
+  else
+    version = ""
   end
+
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "spreadhead #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+  rdoc.rdoc_files.include('app/**/*.rb')
+  rdoc.rdoc_files.include('generators/**/*.rb')
 end
 

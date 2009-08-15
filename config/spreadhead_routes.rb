@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :pages
-  map.page '/page/*url', :controller => 'pages', :action => 'show'
-  map.connect '*url', :controller => 'pages', :action => 'show'
+  map.resources :pages, :controller => 'spreadhead/pages'
+  map.connect '*url', :controller => 'spreadhead/pages', :action => 'show'
 end

@@ -4,9 +4,11 @@ require File.expand_path(File.dirname(__FILE__) + "/../rails/test/factories/spre
 class PageTest < ActiveSupport::TestCase
 
   context "When creating a page" do
+    setup { Factory(:page) }
+    
     should_validate_presence_of :text, :title
     should_validate_uniqueness_of :title, :url    
-    should "protect the att!"
+    should_not_allow_mass_assignment_of :url
 
     should "generate a url" do
       page = Factory.build(:page, :title => 'smack!')
@@ -17,6 +19,8 @@ class PageTest < ActiveSupport::TestCase
   end
   
   context "When retrieving a page" do
+    setup { Factory(:page) }
+
     should_have_named_scope :published
 
     should "use the url as the default parameter" do
