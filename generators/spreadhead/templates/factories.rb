@@ -7,6 +7,6 @@ Factory.define :page do |page|
   page.text                  { "Paging Mrs. Smith" }
   page.description           { "What Mr. Smith Says" }
   page.keywords              { "smith paging" }
-  page.format                { "plain" }
+  page.formatting            { "plain" }
   page.published             { true }
 end

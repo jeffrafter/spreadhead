@@ -71,7 +71,7 @@ Gem::Specification.new do |s|
      "test/rails/config/initializers/new_rails_defaults.rb",
      "test/rails/config/initializers/session_store.rb",
      "test/rails/config/routes.rb",
-     "test/rails/db/migrate/20090815030846_spreadhead_create_pages.rb",
+     "test/rails/db/migrate/20090815045656_spreadhead_create_pages.rb",
      "test/rails/db/schema.rb",
      "test/rails/test/factories/spreadhead.rb",
      "test/rails/test/test_helper.rb",

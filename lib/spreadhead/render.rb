@@ -27,7 +27,6 @@ module Spreadhead
           when 'textile'
             RedCloth.new(page.text).to_html
           else
-           raise "Disaster"
             page.text
         end        
       end

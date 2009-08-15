@@ -6,7 +6,7 @@ class SpreadheadCreatePages < ActiveRecord::Migration
       t.string   :title, :null => false
       t.string   :keywords
       t.string   :description
-      t.string   :format
+      t.string   :formatting
       t.string   :category
       t.boolean  :published, :default => false, :null => false
       t.timestamps

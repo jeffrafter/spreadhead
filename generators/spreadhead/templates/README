@@ -12,4 +12,13 @@ If you want to define an extension point in a view simply add:
 
   <%= spreadhead "PAGE_URL" %> or <%= spreadhead @page %>
 
+By default, Spreadhead tries to insert the content_for the title, description,
+and keywords on your page. You can make use of these by inserting the following
+into the head section in your application layout:
+
+  <title><%= yield :title %></title>
+  <meta name="Description" content="<%= yield :description %>" />
+  <meta name="Keywords" content="<%= yield :keywords %>" />
+ 
+
 *******************************************************************************

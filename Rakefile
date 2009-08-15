@@ -13,7 +13,7 @@ begin
     gem.add_dependency "BlueCloth"
     gem.add_dependency "RedCloth"
     gem.add_dependency "rsl-stringex"
-    gem.files = FileList["[A-Z]*", "{app,config,generators,lib,rails}/**/*", "test/{controllers,models}/**/*", "test/*"] 
+    gem.files = FileList["[A-Z]*", "{app,config,generators,lib,rails}/**/*", "test/{controllers,models}/**/*", "test/test_helper.rb"] 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 

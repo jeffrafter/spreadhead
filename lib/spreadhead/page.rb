@@ -59,7 +59,7 @@ module Spreadhead
       def self.included(model)
         model.class_eval do
           attr_protected :url
-          acts_as_url :title
+          acts_as_url :title, :sync_url => true
         end
       end
     end
