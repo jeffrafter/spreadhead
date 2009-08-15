@@ -74,4 +74,4 @@ When you do:
 
 h2. Documentation
 
-Documentation is available at "http://rdoc.info/jeffrafter/spreadhead":http://rdoc.info/jeffrafter/spreadhead
+Documentation is available at "http://rdoc.info/projects/jeffrafter/spreadhead":http://rdoc.info/jeffrafter/spreadhead

@@ -57,24 +57,6 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/controllers/pages_controller_test.rb",
      "test/models/page_test.rb",
-     "test/rails/app/controllers/application_controller.rb",
-     "test/rails/app/helpers/application_helper.rb",
-     "test/rails/app/models/page.rb",
-     "test/rails/config/boot.rb",
-     "test/rails/config/environment.rb",
-     "test/rails/config/environments/development.rb",
-     "test/rails/config/environments/production.rb",
-     "test/rails/config/environments/test.rb",
-     "test/rails/config/initializers/backtrace_silencers.rb",
-     "test/rails/config/initializers/inflections.rb",
-     "test/rails/config/initializers/mime_types.rb",
-     "test/rails/config/initializers/new_rails_defaults.rb",
-     "test/rails/config/initializers/session_store.rb",
-     "test/rails/config/routes.rb",
-     "test/rails/db/migrate/20090815045656_spreadhead_create_pages.rb",
-     "test/rails/db/schema.rb",
-     "test/rails/test/factories/spreadhead.rb",
-     "test/rails/test/test_helper.rb",
      "test/test_helper.rb"
   ]
 
