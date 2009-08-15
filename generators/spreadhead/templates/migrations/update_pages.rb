@@ -9,7 +9,7 @@ class SpreadheadUpdateUsers < ActiveRecord::Migration
         [:keywords,         't.string :keywords'],
         [:description,      't.string :description'],
         [:category,         't.string :category'],
-        [:format,           't.string :format, :default => "plain", :null => false'],
+        [:formatting,       't.string :formatting, :default => "plain", :null => false'],
         [:published,        't.boolean :published, :default => false, :null => false']
       ].delete_if {|c| existing_columns.include?(c.first.to_s)} 
 -%>
