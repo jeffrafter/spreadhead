@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{spreadhead}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Rafter"]
-  s.date = %q{2009-08-16}
+  s.date = %q{2009-08-17}
   s.description = %q{Rails content mangement for pages that shouldn't be views.}
   s.email = %q{jeff@socialrange.org}
   s.extra_rdoc_files = [
@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
      "rails/init.rb",
      "test/controllers/pages_controller_test.rb",
      "test/models/page_test.rb",
+     "test/models/render_test.rb",
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/jeffrafter/spreadhead}
@@ -57,6 +58,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/controllers/pages_controller_test.rb",
      "test/models/page_test.rb",
+     "test/models/render_test.rb",
      "test/test_helper.rb"
   ]
 
