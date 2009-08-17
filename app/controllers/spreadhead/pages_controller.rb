@@ -11,11 +11,11 @@ module Spreadhead
     end
 
     def show
-      @page = ::Page.published.find_by_url!(params[:id] || params[:url].join('-slash-'))  
+      @page = ::Page.published.find_by_url!(params[:url].to_a.join('/'))  
     end
     
     def edit
-      @page = ::Page.find_by_url!(params[:id])
+      @page = ::Page.find(params[:id])
     end
 
     def create
@@ -32,7 +32,7 @@ module Spreadhead
     end
     
     def update
-      @page = ::Page.find_by_url!(params[:id])
+      @page = ::Page.find(params[:id])
       respond_to do |format|
         if @page.update_attributes(params[:page])
           format.html { redirect_to pages_url }
@@ -45,7 +45,7 @@ module Spreadhead
     end
     
     def destroy
-      @page = ::Page.find_by_url!(params[:id])
+      @page = ::Page.find(params[:id])
       @page.destroy
       respond_to do |format|
         format.html { redirect_to pages_url }

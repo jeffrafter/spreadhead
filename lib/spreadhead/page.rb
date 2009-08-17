@@ -58,17 +58,12 @@ module Spreadhead
       # :title should act like a url.
       def self.included(model)
         model.class_eval do
-          attr_protected :url
-          acts_as_url :title, :sync_url => true
+          acts_as_url :title, :sync_url => true, :only_when_blank => true
         end
       end
     end
 
     module InstanceMethods
-      # The default parameter method for pages is the url
-      def to_param
-        url
-      end
     end  
 
     module ClassMethods

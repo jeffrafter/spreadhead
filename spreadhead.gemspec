@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{spreadhead}
-  s.version = "0.1.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Rafter"]
-  s.date = %q{2009-08-14}
+  s.date = %q{2009-08-16}
   s.description = %q{Rails content mangement for pages that shouldn't be views.}
   s.email = %q{jeff@socialrange.org}
   s.extra_rdoc_files = [

@@ -24,7 +24,7 @@ class PagesControllerTest < ActionController::TestCase
   context "on GET to #show" do
     setup do
       page = Factory(:page)
-      get :show, :id => page.url 
+      get :show, :url => page.url
     end  
 
     should_respond_with :success
@@ -35,7 +35,7 @@ class PagesControllerTest < ActionController::TestCase
   context "on GET to #edit" do
     setup do
       page = Factory(:page)
-      get :edit, :id => page.url
+      get :edit, :id => page.id
     end  
 
     should_respond_with :success
@@ -56,7 +56,7 @@ class PagesControllerTest < ActionController::TestCase
   context "on PUT to #update with valid attributes" do
     setup do
       page = Factory(:page)              
-      put :update, :id => page.url, :page => page.attributes
+      put :update, :id => page.id, :page => page.attributes
     end
       
     should_respond_with :redirect
@@ -66,7 +66,7 @@ class PagesControllerTest < ActionController::TestCase
   context "on DELETE to #destroy with valid attributes" do
     setup do
       page = Factory(:page)
-      delete :destroy, :id => page.url
+      delete :destroy, :id => page.id
     end
     
     should_respond_with :redirect
@@ -75,7 +75,7 @@ class PagesControllerTest < ActionController::TestCase
     should "Destroy the page" do
       count = Page.count
       page = Factory(:page)
-      delete :destroy, :id => page.url
+      delete :destroy, :id => page.id
       assert_equal Page.count, count
     end
 
