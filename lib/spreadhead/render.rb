@@ -23,7 +23,7 @@ module Spreadhead
 
         case page.formatting
           when 'markdown'
-            markdown(page.text)
+            BlueCloth.new(page.text).to_html
           when 'textile'
             RedCloth.new(page.text).to_html
           else
