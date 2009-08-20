@@ -1,3 +1,7 @@
+h2. 0.6.0
+
+* Changed filter behavior, made editing disabled by default (Jeff Rafter)
+
 h2. 0.5.0 
 
 * Added tasks for importing and exporting (Jeff Rafter)
