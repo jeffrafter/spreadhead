@@ -19,6 +19,9 @@ class SpreadheadGenerator < Rails::Generator::Base
       m.directory File.join("test", "factories")
       m.file "factories.rb", "test/factories/spreadhead.rb"      
 
+      m.directory File.join("config", "initializers")
+      m.file "initializer.rb", "config/initializers/spreadhead.rb"      
+
       m.migration_template "migrations/#{migration_name}.rb", 'db/migrate',
         :migration_file_name => "spreadhead_#{migration_name}"
 

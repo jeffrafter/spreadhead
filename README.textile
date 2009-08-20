@@ -2,7 +2,7 @@ h1. Spreadhead
 
 <strong>spreadhead</strong> <em>noun</em> two facing pages of a book or other publication.
 
-Rails content mangement for pages that shouldn't be views.
+Rails content management for pages that shouldn't be views.
 
 h2. Installation
 
@@ -39,20 +39,15 @@ Run the migration:
 rake db:migrate
 </pre>
 
+Modify the initializer in @config/initializers/spreadhead.rb@ to control access.
+
 h2. Routes
 
 Spreadhead installs default catch-all routes. These are given the lowest priority in your application. If your application is already catching these routes then you may not be able to access your spreadhead pages.
 
-h2. Cucumber Features
+h2. Tutorial
 
-As your application evolves, you want to know that your pages still work. Cucumber tests are included.
-
-Run the Cucumber generator (if you haven't already) and the feature generator:
-
-<pre>
-script/generate cucumber
-script/generate spreadhead_features
-</pre>
+Checkout the "tutorial":http://wiki.github.com/jeffrafter/spreadhead/tutorial.
 
 h2. Authors
 

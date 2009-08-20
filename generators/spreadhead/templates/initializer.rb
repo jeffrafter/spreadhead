@@ -7,6 +7,21 @@
 # filter. If you are using a toolkit like Clearance, then you can use the 
 # following:
 #
-# Spreadhead::PagesController.before_filter :redirect_to_root, 
-#                                           :except => [:show], 
-#                                           :unless => :signed_in?
+#   module Spreadhead
+#     module PagesAuth
+#       def self.filter(controller)
+#         controller.redirect_to_root unless signed_in?
+#       end
+#     end  
+#   end    
+#
+# By default all access to creating an modifying pages is forbidden. You need
+# to make sure you trust the people creating pages because they can easily
+# inject malicious scripts using this tool.
+module Spreadhead
+  module PagesAuth
+    def self.filter(controller)
+      controller.send(:head, 403)
+    end
+  end  
+end    

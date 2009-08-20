@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{spreadhead}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Rafter"]
-  s.date = %q{2009-08-17}
+  s.date = %q{2009-08-20}
   s.description = %q{Rails content mangement for pages that shouldn't be views.}
   s.email = %q{jeff@socialrange.org}
   s.extra_rdoc_files = [
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "README.textile",
      "Rakefile",
      "TODO.textile",
+     "TUTORIAL.textile",
      "VERSION",
      "app/controllers/spreadhead/pages_controller.rb",
      "app/views/spreadhead/pages/_form.html.erb",
@@ -42,8 +43,10 @@ Gem::Specification.new do |s|
      "generators/spreadhead/templates/page.rb",
      "lib/spreadhead.rb",
      "lib/spreadhead/extensions/routes.rb",
+     "lib/spreadhead/filter.rb",
      "lib/spreadhead/page.rb",
      "lib/spreadhead/render.rb",
+     "lib/tasks/spreadhead_tasks.rake",
      "rails/init.rb",
      "test/controllers/pages_controller_test.rb",
      "test/models/page_test.rb",

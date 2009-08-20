@@ -1,7 +1,8 @@
 module Spreadhead
   class PagesController < ApplicationController
     unloadable
-
+    before_filter :filter, :except => [:show]
+    
     def new
       @page = ::Page.new    
     end
@@ -22,7 +23,7 @@ module Spreadhead
       @page = ::Page.new(params[:page])
       respond_to do |format|
         if @page.save
-          format.html { redirect_to page_url(@page) }
+          format.html { redirect_to pages_url }
           format.xml  { head :created, :location => pages_url }
         else
           format.html { render :action => "new" }
@@ -51,6 +52,11 @@ module Spreadhead
         format.html { redirect_to pages_url }
         format.xml  { head :ok }
       end
+    end
+    
+  private
+    def filter
+      Spreadhead::PagesAuth.filter(self)    
     end
   end
 end

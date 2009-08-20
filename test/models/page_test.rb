@@ -42,6 +42,20 @@ class PageTest < ActiveSupport::TestCase
       assert dup.save
       assert !dup.errors.on(:url)
     end
+    
+    should "add suffix and be valid when two different titles generate the same url" do
+      page = Factory(:page, :title => 'smurf', :url => 'smurf')
+      dup = Factory(:page, :title => 'smurf!', :url => 'buttons')
+      assert dup.update_attributes(:url => nil)
+      assert_equal 'smurf-1', dup.url
+    end
+    
+    should "be valid when a url is a subset of another url" do
+      page = Factory(:page, :title => 'smurf', :url => 'woozles')
+      dup = Factory(:page, :title => 'Woo', :url => 'brick-spin-brachiosaurus')
+      assert dup.update_attributes(:url => nil)
+      assert_equal 'woo', dup.url
+    end
 
   end
   

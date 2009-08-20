@@ -37,6 +37,7 @@ module Spreadhead
           validates_presence_of :title
           validates_uniqueness_of :title
           validates_uniqueness_of :url  
+          validates_presence_of :url  
         end
       end
     end
@@ -67,6 +68,15 @@ module Spreadhead
     end  
 
     module ClassMethods
+      def to_fixtures(path=nil)
+        path ||= File.expand_path("db/data/#{table_name}.yml", RAILS_ROOT)
+        path = File.join(path, "#{table_name}.yml") if File.directory?(path)
+        file = File.open(path, "w")
+        file.puts(self.find(:all).inject({}) { |hash, record| 
+          hash.merge("\"#{record.title}\"" => record.attributes) 
+        }.to_yaml(:SortKeys => true))
+        file.close
+      end
     end
   end
 end
