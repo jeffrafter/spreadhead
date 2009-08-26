@@ -114,5 +114,48 @@ class PagesControllerTest < ActionController::TestCase
       end
 
     end
+    
+    context "routes" do
+    
+      should "recognize the page resources" do
+        assert_recognizes({:controller => 'spreadhead/pages', :action => 'index'}, {:path => '/pages', :method => :get})
+        assert_recognizes({:controller => 'spreadhead/pages', :action => 'new'}, {:path => '/pages/new', :method => :get})
+        assert_recognizes({:controller => 'spreadhead/pages', :action => 'create'}, {:path => '/pages', :method => :post})
+        assert_recognizes({:controller => 'spreadhead/pages', :id => '1', :action => 'destroy'}, {:path => '/pages/1', :method => :delete})
+        assert_recognizes({:controller => 'spreadhead/pages', :id => '1', :action => 'update'}, {:path => '/pages/1', :method => :put})
+        assert_recognizes({:controller => 'spreadhead/pages', :id => '1', :action => 'edit'}, {:path => '/pages/1/edit', :method => :get})
+      end
+      
+      should "recognize the about path" do      
+        assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['about']}, {:path => '/about', :method => :get})
+      end  
+        
+      should "recognize the privacy path" do      
+        assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['about', 'privacy']}, {:path => '/about/privacy', :method => :get})
+      end  
+      
+      should "recognize the birthday path" do      
+        assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['2004', '09', '13', 'birthday']}, {:path => '/2004/09/13/birthday', :method => :get})
+      end  
+      
+      should "recognize the root path" do
+        assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => []}, {:path => '/', :method => :get})
+      end
+      
+      should "not override the things" do
+        assert_recognizes({:controller => 'things', :action => 'index'}, {:path => '/things', :method => :get})
+        assert_recognizes({:controller => 'things', :action => 'new'}, {:path => '/things/new', :method => :get})
+        assert_recognizes({:controller => 'things', :action => 'create'}, {:path => '/things', :method => :post})
+        assert_recognizes({:controller => 'things', :id => '1', :action => 'destroy'}, {:path => '/things/1', :method => :delete})
+        assert_recognizes({:controller => 'things', :id => '1', :action => 'update'}, {:path => '/things/1', :method => :put})
+        assert_recognizes({:controller => 'things', :id => '1', :action => 'edit'}, {:path => '/things/1/edit', :method => :get})
+      end
+
+      if defined?(Clearance)
+        should "not override clearance paths" do
+          assert_recognizes({:controller => 'sessions', :action => 'new'}, {:path => '/session/new', :method => :get})
+        end
+      end  
+    end
   end  
 end

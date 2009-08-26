@@ -10,7 +10,7 @@
 #   module Spreadhead
 #     module PagesAuth
 #       def self.filter(controller)
-#         controller.redirect_to_root unless signed_in?
+#         controller.send(:redirect_to, '/') unless controller.send(:signed_in?)
 #       end
 #     end  
 #   end    

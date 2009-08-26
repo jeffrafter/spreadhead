@@ -3,8 +3,8 @@ class SpreadheadUpdatePages < ActiveRecord::Migration
 <% 
       existing_columns = ActiveRecord::Base.connection.columns(:pages).collect { |each| each.name }
       columns = [
+        [:text,             't.text   :text, :null => false'],
         [:url,              't.string :url, :null => false'],
-        [:text,             't.string :text, :null => false'],
         [:title,            't.string :title, :null => false'],
         [:keywords,         't.string :keywords'],
         [:description,      't.string :description'],

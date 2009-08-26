@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{spreadhead}
-  s.version = "0.6.0"
+  s.version = "0.6.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Rafter"]
-  s.date = %q{2009-08-20}
+  s.date = %q{2009-08-25}
   s.description = %q{Rails content mangement for pages that shouldn't be views.}
   s.email = %q{jeff@socialrange.org}
   s.extra_rdoc_files = [
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
      "app/views/spreadhead/pages/index.html.erb",
      "app/views/spreadhead/pages/new.html.erb",
      "app/views/spreadhead/pages/show.html.erb",
+     "config/database.yml.sample",
      "config/spreadhead_routes.rb",
      "generators/spreadhead/USAGE",
      "generators/spreadhead/lib/insert_commands.rb",
@@ -70,17 +71,17 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<BlueCloth>, [">= 0"])
-      s.add_runtime_dependency(%q<RedCloth>, [">= 0"])
-      s.add_runtime_dependency(%q<rsl-stringex>, [">= 0"])
+      s.add_runtime_dependency(%q<BlueCloth>, [">= 1.0.0"])
+      s.add_runtime_dependency(%q<RedCloth>, [">= 4.1.1"])
+      s.add_runtime_dependency(%q<rsl-stringex>, [">= 1.0.2"])
     else
-      s.add_dependency(%q<BlueCloth>, [">= 0"])
-      s.add_dependency(%q<RedCloth>, [">= 0"])
-      s.add_dependency(%q<rsl-stringex>, [">= 0"])
+      s.add_dependency(%q<BlueCloth>, [">= 1.0.0"])
+      s.add_dependency(%q<RedCloth>, [">= 4.1.1"])
+      s.add_dependency(%q<rsl-stringex>, [">= 1.0.2"])
     end
   else
-    s.add_dependency(%q<BlueCloth>, [">= 0"])
-    s.add_dependency(%q<RedCloth>, [">= 0"])
-    s.add_dependency(%q<rsl-stringex>, [">= 0"])
+    s.add_dependency(%q<BlueCloth>, [">= 1.0.0"])
+    s.add_dependency(%q<RedCloth>, [">= 4.1.1"])
+    s.add_dependency(%q<rsl-stringex>, [">= 1.0.2"])
   end
 end

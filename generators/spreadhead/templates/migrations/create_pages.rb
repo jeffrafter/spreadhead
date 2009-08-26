@@ -1,8 +1,8 @@
 class SpreadheadCreatePages < ActiveRecord::Migration
   def self.up
     create_table(:pages) do |t|
+      t.text     :text, :null => false
       t.string   :url, :null => false
-      t.string   :text, :null => false
       t.string   :title, :null => false
       t.string   :keywords
       t.string   :description

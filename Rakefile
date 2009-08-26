@@ -10,9 +10,9 @@ begin
     gem.email = "jeff@socialrange.org"
     gem.homepage = "http://github.com/jeffrafter/spreadhead"
     gem.authors = ["Jeff Rafter"]
-    gem.add_dependency "BlueCloth"
-    gem.add_dependency "RedCloth"
-    gem.add_dependency "rsl-stringex"
+    gem.add_dependency "BlueCloth", ">= 1.0.0"
+    gem.add_dependency "RedCloth", ">= 4.1.1"
+    gem.add_dependency "rsl-stringex", ">= 1.0.2"
     gem.files = FileList["[A-Z]*", "{app,config,generators,lib,rails}/**/*", "test/{controllers,models}/**/*", "test/test_helper.rb"] 
     gem.test_files = FileList["test/{controllers,models}/**/*", "test/test_helper.rb"] 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
@@ -29,6 +29,20 @@ Rake::TestTask.new(:test => ["generator:cleanup", "generator:spreadhead"]) do |t
   task.verbose = true
 end  
 
+namespace :test do
+  Rake::TestTask.new(:clearance => ["generator:cleanup", "generator:clearance", "generator:spreadhead"]) do |task|
+    task.libs << "lib" << "test"
+    task.pattern = "test/**/*_test.rb"
+    task.verbose = true
+  end  
+
+  Rake::TestTask.new(:database => ["generator:cleanup", "generator:database", "generator:spreadhead"]) do |task|
+    task.libs << "lib" << "test"
+    task.pattern = "test/**/*_test.rb"
+    task.verbose = true
+  end  
+end
+
 generators = %w(spreadhead)
 
 namespace :generator do
@@ -44,15 +58,34 @@ namespace :generator do
     system "echo \"config.gem 'thoughtbot-shoulda', :lib => 'shoulda'\" >> test/rails/config/environments/test.rb"
     system "echo \"config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl'\" >> test/rails/config/environments/test.rb"
 
+    # Make a thing
+    system "cd test/rails && ./script/generate scaffold thing name:string mood:string"
+
     FileUtils.mkdir_p("test/rails/vendor/plugins")
     spreadhead_root = File.expand_path(File.dirname(__FILE__))
     system("ln -s #{spreadhead_root} test/rails/vendor/plugins/spreadhead")
+  end
+  
+  desc "Prepares the application with clearance"
+  task :clearance do
+    system "echo \"config.gem 'thoughtbot-clearance', :lib => 'clearance'\" >> test/rails/config/environments/test.rb"
+    system "echo \"HOST = 'spreadhead'\" >> test/rails/config/environments/test.rb"
+    system "echo \"DO_NOT_REPLY = 'donotreply'\" >> test/rails/config/environments/test.rb"
+    system "cd test/rails && ./script/generate clearance && rake db:migrate db:test:prepare"
+  end
+  
+  desc "Prepares the application with an alternate database" 
+  task :database do
+    puts "==  Configuring the database =================================================="
+    system "cp config/database.yml.sample test/rails/config/database.yml"
+    system "cd test/rails && rake db:migrate:reset"
   end
 
   desc "Run the spreadhead generator"
   task :spreadhead do
     system "cd test/rails && ./script/generate spreadhead && rake db:migrate db:test:prepare"
   end
+  
 end
 
 task :default => :test
@@ -73,4 +106,3 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('app/**/*.rb')
   rdoc.rdoc_files.include('generators/**/*.rb')
 end
-
