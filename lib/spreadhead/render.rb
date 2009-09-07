@@ -25,7 +25,9 @@ module Spreadhead
           when 'markdown'
             BlueCloth.new(page.text).to_html
           when 'textile'
-            RedCloth.new(page.text).to_html
+            r = RedCloth.new(page.text)
+            r.hard_breaks = false
+            r.to_html
           else
             page.text
         end        
