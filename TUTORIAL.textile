@@ -13,7 +13,9 @@ By default this should install the RedCloth gem, the BlueCloth gem, and the rsl-
   Rails::Initializer.run do |config|
     # Specify gems that this application depends on and have them installed with 
     # rake gems:install
-    config.gem "spreadhead", :lib => "spreadhead"
+    config.gem "jeffrafter-spreadhead",
+      :lib     => 'spreadhead',
+      :source  => 'http://gems.github.com'
 
     # Skip frameworks you're not going to use. To use Rails without a database,
     # you must remove the Active Record framework.
@@ -48,7 +50,7 @@ To enable the application you need to modify initializer, where you can control 
    module Spreadhead
      module PagesAuth
        def self.filter(controller)
-         controller.redirect_to_root unless signed_in?
+         controller.send(:redirect_to, '/') unless controller.send(:signed_in?)
        end
      end  
    end    
@@ -62,7 +64,7 @@ If you give everyone access, this is probably still a bad idea and you will want
    module Spreadhead
      module PagesAuth
        def self.filter(controller)
-         controller.redirect_to_root unless admin?
+         controller.send(:redirect_to, '/') unless controller.send(:admin?)
        end
      end  
    end    
