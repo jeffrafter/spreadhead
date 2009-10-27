@@ -90,7 +90,7 @@ class PagesControllerTest < ActionController::TestCase
         page = Factory(:page)              
         put :update, :id => page.id, :page => page.attributes
       end
-        
+      
       should_respond_with :redirect
       should_not_set_the_flash
       should_redirect_to("The list of pages") { pages_url }
@@ -117,6 +117,11 @@ class PagesControllerTest < ActionController::TestCase
     
     context "routes" do
     
+      should 'not load the routes file premeturely even if inflections is called' do
+        # ActiveSupport::Inflector::inflections
+        # I have no clue how to write a failing test for this
+      end
+    
       should "recognize the page resources" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'index'}, {:path => '/pages', :method => :get})
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'new'}, {:path => '/pages/new', :method => :get})
@@ -126,15 +131,15 @@ class PagesControllerTest < ActionController::TestCase
         assert_recognizes({:controller => 'spreadhead/pages', :id => '1', :action => 'edit'}, {:path => '/pages/1/edit', :method => :get})
       end
       
-      should "recognize the about path" do      
+      should "recognize the about path" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['about']}, {:path => '/about', :method => :get})
       end  
         
-      should "recognize the privacy path" do      
+      should "recognize the privacy path" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['about', 'privacy']}, {:path => '/about/privacy', :method => :get})
       end  
       
-      should "recognize the birthday path" do      
+      should "recognize the birthday path" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['2004', '09', '13', 'birthday']}, {:path => '/2004/09/13/birthday', :method => :get})
       end  
       
