@@ -73,15 +73,15 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<BlueCloth>, [">= 1.0.0"])
       s.add_runtime_dependency(%q<RedCloth>, [">= 4.1.1"])
-      s.add_runtime_dependency(%q<rsl-stringex>, [">= 1.0.2"])
+      s.add_runtime_dependency(%q<stringex>, [">= 1.0.2"])
     else
       s.add_dependency(%q<BlueCloth>, [">= 1.0.0"])
       s.add_dependency(%q<RedCloth>, [">= 4.1.1"])
-      s.add_dependency(%q<rsl-stringex>, [">= 1.0.2"])
+      s.add_dependency(%q<stringex>, [">= 1.0.2"])
     end
   else
     s.add_dependency(%q<BlueCloth>, [">= 1.0.0"])
     s.add_dependency(%q<RedCloth>, [">= 4.1.1"])
-    s.add_dependency(%q<rsl-stringex>, [">= 1.0.2"])
+    s.add_dependency(%q<stringex>, [">= 1.0.2"])
   end
 end
