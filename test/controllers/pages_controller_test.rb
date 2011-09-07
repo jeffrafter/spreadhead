@@ -9,19 +9,19 @@ class PagesControllerTest < ActionController::TestCase
     setup do
       module Spreadhead::PagesAuth
         def self.filter(controller); controller.send(:head, 403); end
-      end  
-    end  
-          
+      end
+    end
+
     context "on GET to #new" do
       setup { get :new }
       should_respond_with 403
     end
-    
+
     context "on GET to #show" do
       setup do
         page = Factory(:page)
         get :show, :url => page.url
-      end  
+      end
 
       should_respond_with :success
       should_render_template :show
@@ -33,9 +33,9 @@ class PagesControllerTest < ActionController::TestCase
     setup do
       module Spreadhead::PagesAuth
         def self.filter(controller); true; end
-      end  
-    end  
-      
+      end
+    end
+
     context "on GET to #new" do
       setup { get :new }
 
@@ -56,7 +56,7 @@ class PagesControllerTest < ActionController::TestCase
       setup do
         page = Factory(:page)
         get :show, :url => page.url
-      end  
+      end
 
       should_respond_with :success
       should_render_template :show
@@ -67,7 +67,7 @@ class PagesControllerTest < ActionController::TestCase
       setup do
         page = Factory(:page)
         get :edit, :id => page.id
-      end  
+      end
 
       should_respond_with :success
       should_render_template :edit
@@ -79,29 +79,29 @@ class PagesControllerTest < ActionController::TestCase
         page_attributes = Factory.attributes_for(:page)
         post :create, :page => page_attributes
       end
-        
+
       should_respond_with :redirect
       should_not_set_the_flash
       should_redirect_to("The list of pages") { pages_url }
     end
-    
+
     context "on PUT to #update with valid attributes" do
       setup do
-        page = Factory(:page)              
+        page = Factory(:page)
         put :update, :id => page.id, :page => page.attributes
       end
-        
+
       should_respond_with :redirect
       should_not_set_the_flash
       should_redirect_to("The list of pages") { pages_url }
     end
-    
+
     context "on DELETE to #destroy with valid attributes" do
       setup do
         page = Factory(:page)
         delete :destroy, :id => page.id
       end
-      
+
       should_respond_with :redirect
       should_not_set_the_flash
       should_redirect_to("The list of pages") { pages_url }
@@ -114,9 +114,14 @@ class PagesControllerTest < ActionController::TestCase
       end
 
     end
-    
+
     context "routes" do
-    
+
+      should 'not load the routes file premeturely even if inflections is called' do
+        # ActiveSupport::Inflector::inflections
+        # I have no clue how to write a failing test for this
+      end
+
       should "recognize the page resources" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'index'}, {:path => '/pages', :method => :get})
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'new'}, {:path => '/pages/new', :method => :get})
@@ -125,23 +130,23 @@ class PagesControllerTest < ActionController::TestCase
         assert_recognizes({:controller => 'spreadhead/pages', :id => '1', :action => 'update'}, {:path => '/pages/1', :method => :put})
         assert_recognizes({:controller => 'spreadhead/pages', :id => '1', :action => 'edit'}, {:path => '/pages/1/edit', :method => :get})
       end
-      
-      should "recognize the about path" do      
+
+      should "recognize the about path" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['about']}, {:path => '/about', :method => :get})
-      end  
-        
-      should "recognize the privacy path" do      
+      end
+
+      should "recognize the privacy path" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['about', 'privacy']}, {:path => '/about/privacy', :method => :get})
-      end  
-      
-      should "recognize the birthday path" do      
+      end
+
+      should "recognize the birthday path" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => ['2004', '09', '13', 'birthday']}, {:path => '/2004/09/13/birthday', :method => :get})
-      end  
-      
+      end
+
       should "recognize the root path" do
         assert_recognizes({:controller => 'spreadhead/pages', :action => 'show', :url => []}, {:path => '/', :method => :get})
       end
-      
+
       should "not override the things" do
         assert_recognizes({:controller => 'things', :action => 'index'}, {:path => '/things', :method => :get})
         assert_recognizes({:controller => 'things', :action => 'new'}, {:path => '/things/new', :method => :get})
@@ -155,7 +160,7 @@ class PagesControllerTest < ActionController::TestCase
         should "not override clearance paths" do
           assert_recognizes({:controller => 'sessions', :action => 'new'}, {:path => '/session/new', :method => :get})
         end
-      end  
+      end
     end
-  end  
+  end
 end
